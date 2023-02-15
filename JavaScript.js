@@ -1,3 +1,10 @@
+let displayValue = '50';
+let storedValue = '0';
+
+document.getElementById("currentNum").innerHTML = displayValue;
+
+
+
 function add(a, b) {
     return a + b;
 }
