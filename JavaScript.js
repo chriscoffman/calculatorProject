@@ -8,8 +8,10 @@ refreshValues();
 const numButtons = document.querySelectorAll('#num');
 const operatorButtons = document.querySelectorAll('#operator');
 const clearButton = document.querySelector('#clear');
+const equalsButton = document.querySelector('#equals');
 
 clearButton.addEventListener('click', () => clearAll());
+equalsButton.addEventListener('click', () => solve());
 
 numButtons.forEach((button) => 
     button.addEventListener('click', () => updateDisplay(button.textContent))
@@ -19,6 +21,10 @@ operatorButtons.forEach((button) =>
     button.addEventListener('click', () => updateOperator(button.textContent))
 )
 
+function solve() {
+    operate(operator, storedValue, displayValue)
+    operator = '';
+}
 
 function clearAll() {
     storedValue = '0';
