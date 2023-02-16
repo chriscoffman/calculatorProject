@@ -1,24 +1,82 @@
-let displayValue = '50';
+let displayValue = '0';
 let storedValue = '0';
+let operator = '';
 
-document.getElementById("currentNum").innerHTML = displayValue;
+refreshValues();
 
 
+const numButtons = document.querySelectorAll('#num');
+const operatorButtons = document.querySelectorAll('#operator');
+const clearButton = document.querySelector('#clear');
+
+clearButton.addEventListener('click', () => clearAll());
+
+numButtons.forEach((button) => 
+    button.addEventListener('click', () => updateDisplay(button.textContent))
+)
+
+operatorButtons.forEach((button) =>
+    button.addEventListener('click', () => updateOperator(button.textContent))
+)
+
+
+function clearAll() {
+    storedValue = '0';
+    displayValue = '0';
+    operator = '';
+    refreshValues();
+}
+
+function updateOperator(newOperator) {
+    if(operator != '') {
+        operate(operator, storedValue, displayValue)
+        operator = newOperator;
+    } else {
+        operator = newOperator;
+        storedValue = displayValue;
+        displayValue = '0';
+        refreshValues();
+    }
+}
+
+function refreshValues() {
+    document.getElementById('currentNum').innerHTML = displayValue;
+    document.getElementById('storedNum').innerHTML = storedValue;
+}
+
+function updateDisplay(number) {
+    if (displayValue == '0'){
+        displayValue = number
+    } else if (displayValue.length >= 16) {
+        displayValue = '0'
+    } else {
+        displayValue = `${displayValue}${number}`
+    }
+    refreshValues();
+}
 
 function add(a, b) {
-    return a + b;
+    storedValue = Number(a) + Number(b);
+    displayValue = 0;
+    refreshValues();
 }
 
 function subtract(a, b) {
-    return a - b;
+    storedValue = Number(a) - Number(b);
+    displayValue = 0;
+    refreshValues();
 }
 
 function multiply(a, b) {
-    return a * b;
+    storedValue = Number(a) * Number(b);
+    displayValue = 0;
+    refreshValues();
 }
 
 function divide(a, b) {
-    return a / b;
+    storedValue = Number(a) / Number(b);
+    displayValue = 0;
+    refreshValues();
 }
 
 function operate(operator, a, b) {

@@ -17,10 +17,18 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    flex-direction: column;
 }
 
 #currentNum {
     font-size: 50px;
+    max-width: 100%;
+}
+
+#storedNum {
+    font-size: 40px;
+    max-width: 100%;
+    justify-self: flex-start;
 }
 
 button {
